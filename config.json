@@ -1,0 +1,19 @@
+{
+    "name": "ComoHome",
+    "url": "https://comohome.pl/",
+    "category_regex": ".*",
+    "product_regex": ".*",
+    "product": {
+        "name": "h1",
+        "sku": ".product-sku",
+        "price": ".price",
+        "old_price": ".old-price",
+        "image": ".product-image img@src",
+        "description": ".product-description",
+        "category": ".breadcrumbs a:nth-last-child(2)",
+        "brand": ".breadcrumbs a:nth-last-child(3)",
+        "stock": ".stock",
+        "ean": ".product-ean",
+        "attributes": ".product-attributes"
+    }
+}
