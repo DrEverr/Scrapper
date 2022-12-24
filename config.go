@@ -6,6 +6,8 @@ type Config struct {
 	Name string `json:"name"`
 	// Shop url
 	Url string `json:"url"`
+	// Output file
+	Output string `json:"output"`
 	// Categories regex
 	Category_regex string `json:"category_regex"`
 	// Products regex
@@ -15,20 +17,24 @@ type Config struct {
 }
 
 type Product struct {
-	// Product name
-	Name string `json:"name"`
 	// Product sku
 	Sku string `json:"sku"`
+	// Product name
+	Name string `json:"name"`
 	// Product price
 	Price string `json:"price"`
 	// Product old price
 	Old_price string `json:"old_price"`
-	// Product discount
-	Discount string `json:"discount"`
-	// Product image
-	Image string `json:"image"`
+	// Product currency
+	Currency string `json:"currency"`
+	// Product url
+	Url string
+	// Product availability
+	Availability string `json:"availability"`
 	// Product description
 	Description string `json:"description"`
+	// Product image
+	Image string `json:"image"`
 	// Product category
 	Category string `json:"category"`
 	// Product ean
@@ -37,8 +43,4 @@ type Product struct {
 	Brand string `json:"brand"`
 	// Product stock
 	Stock string `json:"stock"`
-	// Product currency
-	Currency string `json:"currency"`
-	// Product attributes
-	Attributes string `json:"attributes"`
 }
