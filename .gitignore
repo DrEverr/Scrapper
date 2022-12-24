@@ -1,6 +1,7 @@
 # Own
 config.json
 out/*
+scrapper
 
 # Binaries for programs and plugins
 *.exe
