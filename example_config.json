@@ -1,6 +1,7 @@
 {
     "name": "Example site",
     "url": "https://examplesite.org/",
+    "output": "./output.csv",
     "category_regex": ".*",
     "product_regex": ".*",
     "product": {
