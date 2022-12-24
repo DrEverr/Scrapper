@@ -1,7 +1,8 @@
 # Own
 config.json
-out/*
+out/
 scrapper
+output*
 
 # Binaries for programs and plugins
 *.exe
