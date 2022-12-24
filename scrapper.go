@@ -6,11 +6,14 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
+var queuePages []string
+var queueProducts []string
 var config Config
 
 // read file config.json and change it to struct
@@ -55,30 +58,69 @@ func getHrefs(html string) []string {
 	})
 }
 
+// testing regex with hrefs using regexp
+func compareRegex(hrefs []string, regex string) []string {
+	var newHrefs []string
+	for _, href := range hrefs {
+		matched, err := regexp.MatchString(regex, href)
+		if err != nil {
+			log.Println(err)
+		}
+		if matched {
+			newHrefs = append(newHrefs, href)
+		}
+	}
+	return newHrefs
+}
+
 // scrape url
 func scrape(url string) {
+	// checking if url contains config.Url
+	if !strings.Contains(url, config.Url) {
+		url = config.Url + url
+	}
+
 	// get html
 	html, err := getHtml(url)
 	if err != nil {
 		log.Println(err)
+		return
 	}
+
 	// get all hrefs
 	hrefs := getHrefs(html)
-	log.Println(hrefs)
 
-	//categories := hrefs.
-	// get products
-	//products := getProducts(html)
-	// get product details
-	// for _, product := range products {
-	// 	getProductDetails(product)
-	// }
+	// compare hrefs with category regex
+	categories := compareRegex(hrefs, config.Category_regex)
+
+	// enqueue unique categories
+	for _, category := range categories {
+		if !contains(queuePages, category) {
+			queuePages = append(queuePages, category)
+		}
+	}
+
+	// compare hrefs with product regex
+	products := compareRegex(hrefs, config.Product_regex)
+
+	// enqueue unique products
+	for _, product := range products {
+		if !contains(queueProducts, product) {
+			queueProducts = append(queueProducts, product)
+		}
+	}
 }
 
 // main function
 func main() {
 	config = readConfig()
 	scrape(config.Url)
+
+	for _, url := range queuePages {
+		scrape(url)
+	}
+
 	// log config details
-	log.Println(config)
+	log.Println(queuePages)
+	log.Println(queueProducts)
 }
