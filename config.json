@@ -1,6 +1,6 @@
 {
-    "name": "ComoHome",
-    "url": "https://comohome.pl/",
+    "name": "Example site",
+    "url": "https://examplesite.org/",
     "category_regex": ".*",
     "product_regex": ".*",
     "product": {
