@@ -2,8 +2,8 @@
     "name": "Example site",
     "url": "https://examplesite.org/",
     "output": "./output.csv",
-    "category_regex": ".*",
-    "product_regex": ".*",
+    "category_regex": "\\/category-\\w+.*",
+    "product_regex": "\\/product[\\w\\d-_]+.*",
     "product": {
         "name": "h1",
         "sku": ".product-sku/attribute-value",
