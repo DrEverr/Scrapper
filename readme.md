@@ -12,6 +12,10 @@ There is example_config.json file for easier start
 If we just give query it will extract Text of page, but if we want to extract Attribute Value we need to say whitch attribute we want, by adding `/` after querty to element we want, and we need to provide name of attribute we want, eg. `#my-element/att-value` will extract value of `att-value` in element with `id=my-element`
 
 # ToDo \### Project status
+- [ ] Add next page xpath
+- [ ] Remove filtering urls
+- [ ] Save output to file (csv) more often
 - [ ] Extraction attributes
 - [ ] Concatenate/create array of values if more elements on same query exists
 - [ ] Multithreading
+- [ ] Fix bug with https and http in url. Desn's see http as https and vice versa
