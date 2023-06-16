@@ -3,6 +3,7 @@ config.json
 out/
 scrapper
 output*
+*.csv
 
 # Binaries for programs and plugins
 *.exe
