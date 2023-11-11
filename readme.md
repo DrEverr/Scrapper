@@ -9,26 +9,26 @@ It's important to first create `config.json` file.
 It should look like this:
 ```json
 {
-    "name": "Example Shop",
-    "url": "https://example.com",
-    "output": "output.txt",
-    "category_regex": "category_regex_pattern",
-    "product_regex": "product_regex_pattern",
-    "product": {
-        "sku": "123456",
-        "name": "Example Product",
-        "price": "99.99",
-        "old_price": "149.99",
-        "currency": "USD",
-        "url": "https://example.com/product",
-        "availability": "In Stock",
-        "description": "This is an example product description.",
-        "image": "https://example.com/image.jpg",
-        "category": "Example Category",
-        "ean": "1234567890123",
-        "brand": "Example Brand",
-        "stock": "100"
-    }
+  "name": "Example Shop",
+  "url": "https://example.com",
+  "output": "output.txt",
+  "category_regex": "category_regex_pattern",
+  "product_regex": "product_regex_pattern",
+  "product": {
+    "sku": "123456",
+    "name": "Example Product",
+    "price": "99.99",
+    "old_price": "149.99",
+    "currency": "USD",
+    "url": "https://example.com/product",
+    "availability": "In Stock",
+    "description": "This is an example product description.",
+    "image": "https://example.com/image.jpg",
+    "category": "Example Category",
+    "ean": "1234567890123",
+    "brand": "Example Brand",
+    "stock": "100"
+  }
 }
 ```
 Best refer to config.go for more info.
