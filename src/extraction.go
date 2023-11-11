@@ -48,7 +48,7 @@ func extractProductData(html string) Product {
 		return product
 	}
 
-	// Then use this function for each attribute
+	// get product data
 	product.Name = getProductAttributeRequired(productHtml, config.Product.Name, "Product name", true)
 	product.Price = getProductAttributeRequired(productHtml, config.Product.Price, "Product price", true)
 	product.Sku = getProductAttributeRequired(productHtml, config.Product.Sku, "Product sku", true)
@@ -65,6 +65,7 @@ func extractProductData(html string) Product {
 	return product
 }
 
+// find a value in html using jquery
 func getProductAttribute(productHtml *goquery.Document, configAttribute, attributeName string) string {
 	return getProductAttributeRequired(productHtml, configAttribute, attributeName, false)
 }
