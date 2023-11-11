@@ -48,74 +48,34 @@ func extractProductData(html string) Product {
 		return product
 	}
 
-	// get product name
-	if config.Product.Name != "" {
-		product.Name = find(productHtml, config.Product.Name)
-	} else {
-		log.Println("Product name not found in config.json")
-	}
-
-	// get product price
-	if config.Product.Price != "" {
-		product.Price = find(productHtml, config.Product.Price)
-	} else {
-		log.Println("Product price not found in config.json")
-	}
-
-	// get product sku
-	if config.Product.Sku != "" {
-		product.Sku = find(productHtml, config.Product.Sku)
-	}
-
-	// get product old price
-	if config.Product.Old_price != "" {
-		product.Old_price = find(productHtml, config.Product.Old_price)
-	}
-
-	// get product availability
-	if config.Product.Availability != "" {
-		product.Availability = find(productHtml, config.Product.Availability)
-	}
-
-	// get product description
-	if config.Product.Description != "" {
-		product.Description = find(productHtml, config.Product.Description)
-	}
-
-	// get product image
-	if config.Product.Image != "" {
-		product.Image = find(productHtml, config.Product.Image)
-	}
-
-	// get product description
-	if config.Product.Description != "" {
-		product.Description = find(productHtml, config.Product.Description)
-	}
-
-	// get product category
-	if config.Product.Category != "" {
-		product.Category = find(productHtml, config.Product.Category)
-	}
-
-	// get product ean
-	if config.Product.Ean != "" {
-		product.Ean = find(productHtml, config.Product.Ean)
-	}
-
-	// get product brand
-	if config.Product.Brand != "" {
-		product.Brand = find(productHtml, config.Product.Brand)
-	}
-
-	// get product stock
-	if config.Product.Stock != "" {
-		product.Stock = find(productHtml, config.Product.Stock)
-	}
-
-	// get product currency
-	if config.Product.Currency != "" {
-		product.Currency = find(productHtml, config.Product.Currency)
-	}
+	// Then use this function for each attribute
+	product.Name = getProductAttributeRequired(productHtml, config.Product.Name, "Product name", true)
+	product.Price = getProductAttributeRequired(productHtml, config.Product.Price, "Product price", true)
+	product.Sku = getProductAttributeRequired(productHtml, config.Product.Sku, "Product sku", true)
+	product.Old_price = getProductAttribute(productHtml, config.Product.Old_price, "Product old price")
+	product.Availability = getProductAttribute(productHtml, config.Product.Availability, "Product availability")
+	product.Description = getProductAttribute(productHtml, config.Product.Description, "Product description")
+	product.Image = getProductAttribute(productHtml, config.Product.Image, "Product image")
+	product.Category = getProductAttribute(productHtml, config.Product.Category, "Product category")
+	product.Ean = getProductAttribute(productHtml, config.Product.Ean, "Product ean")
+	product.Brand = getProductAttribute(productHtml, config.Product.Brand, "Product brand")
+	product.Stock = getProductAttribute(productHtml, config.Product.Stock, "Product stock")
+	product.Currency = getProductAttribute(productHtml, config.Product.Currency, "Product currency")
 
 	return product
+}
+
+func getProductAttribute(productHtml *goquery.Document, configAttribute, attributeName string) string {
+	return getProductAttributeRequired(productHtml, configAttribute, attributeName, false)
+}
+
+func getProductAttributeRequired(productHtml *goquery.Document, configAttribute, attributeName string, required bool) string {
+	if configAttribute != "" {
+		return find(productHtml, configAttribute)
+	} else if required {
+		log.Printf("%s not found in config.json", attributeName)
+		return ""
+	} else {
+		return ""
+	}
 }
